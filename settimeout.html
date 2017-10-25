@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		   <script type="text/javascript">
+            function closeclick() {
+                document.getElementById('note').style.display = 'none';
+                $.cookie('the_cookie', 'the_value');
+            }
+
+            $(document).ready(function () {
+                if (typeof($.cookie("the_cookie")) == "undefined") {
+                    $(".mask-box").show();
+                    setTimeout("ding()", 10000);
+                } else {
+                    ding();
+                }
+                $.cookie('the_cookie', 'the_value');
+            })
+           
+            function ding() {
+                $(".mask-box").hide();
+            }
+        </script>
+	</head>
+	<body bgcolor=lightcyan text=red> <p> </br>
+
+<form name=fm>
+<input type="text" name="displayBox"value="0" size=4 >
+</form>
+
+<script>
+countSecond( )
+</script>
+
+</body>
+</html>

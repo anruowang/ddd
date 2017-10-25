@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>canvas画圆圈</title>
+  <script type="text/javascript" >
+  function drawCircle(id){
+    var canvas = document.getElementById(id);
+    if(canvas ) {
+      var context = canvas.getContext("2d");
+      context.fillStyle = "white";
+      context.strokeStyle = "#fff";
+      context.fillRect(0, 0, 400, 400);
+      context.beginPath();
+      context.arc(200, 200, 200, 0, Math.PI*2, true);
+      context.closePath();
+      context.fillStyle = "cornflowerblue";
+      context.fill();
+      
+      context.beginPath();              
+	  context.lineWidth="3";
+	  context.strokeStyle="red";
+	  context.moveTo(200,200);
+	  context.lineTo(200,0);
+	  context.stroke();
+	  
+	  context.beginPath();              
+	  context.lineWidth="3";
+	  context.strokeStyle="red";
+	  context.moveTo(200,200);
+	  context.lineTo(0,200);
+	  context.stroke();
+	  
+	  context.beginPath();              
+	  context.lineWidth="3";
+	  context.strokeStyle="red";
+	  context.moveTo(200,200);
+	  context.lineTo(400,200);
+	  context.stroke();
+
+	context.beginPath();              
+	  context.lineWidth="3";
+	  context.strokeStyle="red";
+	  context.moveTo(200,200);
+	  context.lineTo(200,400);
+	  context.stroke();
+
+
+    } else {
+      return;
+    }
+  }
+  window.onload = function () {
+    drawCircle("canvas");
+  }
+  </script>
+</head>
+<body>
+<canvas id="canvas" width="400" style="background:red;" height="400"></canvas>
+<hr />
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function f1(){
+				var n=999;
+				function f2(){
+					alert(n);
+				}
+				return f2;
+			}
+			var result=f1();
+			result();
+			
+			
+			.outer{zoom:1;}
+			.outer:after{clear:both;content:'.';display:block;width:0;height:0;visibility:hidden;}
+			
+			.outer{border:1px solid #ccc;background:#fc9;color:#FFF;margin:50px auto;padding:50px;}
+			.clearfix:after{content:'';display:block;clear:both;visibility:hidden;zoom:1;}//visibility:hidden的作用是允许浏览器渲染它，但是不显示出来，这样才能清除浮动
+		</script>
+		
+	</body>
+</html>

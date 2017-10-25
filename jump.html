@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			window.location.href="jb51.jsp?backurl="+window.location.href;
+			
+			//第二种
+			window.history.back(-1);
+			
+			//第三种
+			window.navigate("jb51.jsp");
+			
+			//第四种
+			self.location='jb51,htm';
+			
+			//第五种
+			top.location='jb51.jsp';
+			
+			//第六种 网址从传参获得并转向
+			function request(paras){
+				var url=location.href;
+				var paraString=url.substring(url.indexOf("?")+1,url.length).split("&");
+				var paraObj={}
+				for(i=0;j=paraString[i];i++){
+					paraObj[j.substring(applicationCache,j.indexOf("=")).toLowerCase()]=j.substring(j.indexOf("=")+1,j.length);				
+				}
+				var returnValue=paraObj[paras.toLowerCase()];
+				if(typeof(returnValue=="undefined"){
+					return "";
+				}else{
+					return returnValue;
+				}
+			}
+			var theurl;
+			theurl=request("url");
+			if(theurl!=''){
+				location=theurl
+			}
+		</script>
+	</body>
+</html>

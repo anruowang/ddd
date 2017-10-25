@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		/* 首页打开显示一张图片 */
+.mask-box{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10001;
+}
+.default-img{
+    width:auto;
+    max-width: 1000px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+.default-img img{
+    width: 100%;
+    height: auto;
+}
+.mask-close{
+    position: absolute;
+    top: -26px;
+    right: -33px;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.8;
+}
+.mask-close i{
+    font-size: 28px;
+    font-style: inherit;
+}
+.mask-close:hover{
+    opacity: 1;
+}
+	</style>
+	
+	<body>
+		 <div class="mask-box" id="note" style="display:none;">
+        <div class="default-img">
+            <div class="mask-close js-mask-close">
+                <i class="yhfont" onclick="closeclick()">X</i>
+            </div>
+            <a href="" class="boxHref light"  style="background-image: url(images/alert.png); background-position: initial initial; background-repeat: no-repeat no-repeat;">
+                <img class="boxImg" src="images/alert.png" alt=""></a>
+
+        </div>
+    </div>
+	</body>
+	<script>
+		function cookiesave(n,v,mins,dn,path){
+			if(n){
+				if(!mins) mins=365*24*60;
+				if(!path) path="/";
+				var date=new Date();
+				date.setTime(date.getTime()+(mins*60*1000));
+				var expires=";expires="+date.toCmtString();
+				if(dn) dn="domain=" + dn + ";";
+				document.cookie=n+"="+v+expires+";"+dn+"pnth="+path;
+			}
+		}
+		function cookieget(n){
+			var name=n+"=";
+			var ca=document.cookie.split(';');
+			for(var i=0;i<ca.length;i++){
+				var c=ca[i];
+				while(c.charAt(0)=='')c=c.substring(1,c.length);
+				if(c.indexOf(name)==0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+		function closeclick(){
+			document.getElementById('note').styleplay='none';
+			cookiesave('closeclick','closeclick','','','');
+		}
+		function clickclose(){
+			if(cookieget('closeclick')=='closeclick'){
+				document.getElementById('note').style.display='none';
+			}else{
+				document.getElementById('note').style.display='block';
+			}
+			
+		}
+		window.onload=clickclose;
+		
+		
+	</script>
+</html>

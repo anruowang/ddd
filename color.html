@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 function changeColor() {
+                var color = "red|#7ebf38";//定义一条变换颜色的字符串  
+                color = color.split("|"); //然后通过split方法进行分割  
+                //var xuan = document.getElementsByTagName("h1");//获得元素  
+                var xuan = $("#lucky");
+
+                for (var i = 0; i < xuan.length; i++) {
+                    xuan[i].style.color = color[parseInt(Math.random() * color.length)];//设置样式   
+
+                }
+
+            }
+	</body>
+</html>

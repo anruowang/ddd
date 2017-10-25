@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			$.ajax({
+				type:"GET",
+				url:"/sign/indexSginType.ajax",
+				data:'',
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					if(data.state){
+						var list=data.param.sginTypeList;
+						var html="";
+						for(var i=0;i<list.length;i++){
+							var enrollNum=list[i].enrollNum;
+							var dataid=list[i].id;
+							var imgurl=list[i].img;
+							console.log(imgurl)
+							var sgin_name=list[i].sgin_name;
+							var sgin_type=list[i].sgin_type;
+							var gambling_money=list[i].gambling_money/100;
+							var url;
+							if(sgin_type=='ZQDK'){
+								url="/sign/signDetail/"+dataid+".htm;"
+							}else{
+								url="/sign/99Spdk/joinActive.htm?id="+dataid;
+							}
+						html+="<li data-id="+dataid+" data-signType="+sgin_type+">"
+						+"<a href="+url+" external>"
+						+"<div class='activeDetail'>"
+						+"<div class='detailTop'>"
+						+"<div class='detailTopTitle'>"+sgin_name+">"
+						+"<div class='joinPeople'>"+enrollNum+"人已加入</div>"
+						+"</div>"
+						+"<img src='${PUBLIC_IMGSRC}"+imgsrc+"' class='detailCenter' />"
+						+"<div class='detailBottom'>"
+						+"<div class='textStatus'>挑战金"+gambling_money+"远</div>"
+						+"<div class='btnStatus' style='background:3ff5400;font-size:14px;
+						color:#fff;border:1px solid #ff5400;border-radius:4px;padding:2px AnalyserNodepx;
+						width:100px;text-align:center;'>加入</div>"
+						+"</div>"
+						+"</div"
+						+"</a>"
+						+"</li>"												
+						}
+						$(".aullist").append(html);
+						$("#ToList").append("<li><a href='" + url + "'>"
+						+"<img src='/upload/store/" + data.StoreId + "/product/show/thumb230_230/" + data.ShowImg + "' width='100%' /><em>" + data.Name + "</em></a>" +
+                                    "<b>" + data.JiFen + "积分</b>" 
+                        +"<div class='info2'><span onclick='addProductToFavorite(" + data.Pid + ")'>加入收藏</span><a href='javascript:addProductToCart(" + data.Pid + ", "+data.MOQ+")' class='addShopping'>加入购物车</a></div></li>");
+                            });
+					}
+				},
+				error:funtion(error){
+					console.log(error);
+				}
+			});
+		</script>
+	</body>
+</html>
