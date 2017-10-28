@@ -6,7 +6,188 @@
 	</head>
 	<body>
 		<style>
+			#content aside{
+				color:red;
+				body.ie &{color:green}
+			}
 			
+			#content aside{color:red};
+			body.ie #content aside{color:green}
+			
+			.container{
+				h1,h2,h3{margin-bottom:.8em};
+			}
+			.container h1,.container h2,.container h3{,margin-bottom:.8em}
+			
+			nav,aside{
+				a{color:blue}
+			}
+			
+			nav a,aside a{color:blue}
+			
+			article{
+				~article{border-top:1px dashed #ccc}
+				>section{background:#eee}
+				dl>{
+					dt{color:#333}
+					dd{color:#555}
+				}
+				nav + & {margin-top:0}
+			}
+			
+			article ~ article{border-top:1px dashed #ccc}
+			article > section{background:#eee}
+			article dl >dt {color:#333}
+			article dl >dd{color:#555}
+			nav + article{margin-top:0}
+			
+			nav{
+				border:{
+					style:solid;
+					width:1px;
+					color:#ccc;
+				}
+			}
+			
+			nav{
+				border-style:solid;
+				border-width:1px;
+				border-color:#ccc;
+			}
+			
+			nav{
+				border:1px solid #ccc{
+					left:0px;
+					right:0px;
+				}
+			}
+			
+			nav{
+				border:1px solid #ccc;
+				border-left:0px;
+				border-right:0px
+			}
+			
+			$fancybox-width:400px !default;
+			.fancybox{
+				width:$fancybox-width;
+			}
+			
+			//_blue-theme.scss的局部文件
+			aside{
+				background:blue;
+				color:white;
+			}
+			
+			.blue-theme{@import "blue-theme"}
+			
+			//生成结果
+			.blue-theme{
+				aside{
+					background:blue;
+					color:#fff;
+				}
+			}
+			
+			body{
+				color:#333;//这种注释内容不会出现在生成的css文件中
+				padding:0;/*这种注释内容会出现在生成的css文件中*/
+			}
+			
+			sass条理性和可读性的最基本的三个方法:嵌套 导入和注释
+			
+			混合器
+			@mixin rounded-corners{
+				-moz-border-radius:5px;
+				-webkit-border-radius:5px;
+				border-radius:5px;
+			}
+			
+			notice{
+				background-color:green;
+				border:2px solid #00aa00;
+				@include rounded-corners;
+			}
+			
+			//sass最终生成
+			
+			@mixin no-bullets{
+				list-style:none;
+				li{
+					list-style-image:none;
+					list-style-type:none;
+					margin-left:0px;
+				}
+			}
+			ul.plain{
+				color:#444;
+				@include no-bullets;
+			}
+			
+			ul.plain{
+				color:#444;
+				list-style:none;
+			}
+			ul.plain li{
+				list-style-image:none;
+				list-style-type:none;
+				margin-left:0px;
+			}
+			
+			//给混合器传参
+			@mixin link-colors($normal,$hover,$visited){
+				color:$normal;
+				&:hover{color:$hover;}
+				&:visited{color:$visited;}
+			}
+			a{
+				@include link-colors(blue,red,green);
+			}
+			//sass最终生成的事
+			a{color:blue;}
+			a:hover{color:red;}
+			a:visited{color:green;}
+			
+			a{
+				@include link-colors{
+					$normal:blue,;
+					$visited:green,;
+					$hover:red
+				}
+			}
+			
+			$name:value的形式指定每个参数的值
+			
+			
+			a{
+				@incluede link-colors(
+				$normal:blue,
+				$visited:green,
+				$hover:red
+				);
+			}
+			
+			//默认参数值
+			@mixin link-colors(
+				$normal,
+				$hover:$normal,
+				$visited:$normal
+			)
+			{
+				color:$normal;
+				&:hover{color:$hover;}
+				&:visited{color:$visited;}
+			}
+			
+			//使用选择器继承精简css
+			//通过选择器继承样式
+			.error{
+				border:1px solid red;
+			}
+			.seriousError{
+				@extend .error;
+				border-width:3px;
+			}
 		</style>
 	</body>
 </html>
